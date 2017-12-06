@@ -13,32 +13,32 @@ import colors from '../lib/colors'
 const MenuData1 = [
     {
         id: 1,
-        title: 'STORE SETUP',
+        title: 'Store Setup',
         ico: 'ios-home-outline'
     },
     {
         id: 2,
-        title: 'INVOICE SETUP',
+        title: 'Invoice Setup',
         ico: 'logo-buffer'
     },
     {
         id: 3,
-        title: 'INVENTORY',
+        title: 'Inventory',
         ico: 'ios-apps-outline'
     },
     {
         id: 4,
-        title: 'PEOPLE',
+        title: 'People',
         ico: 'ios-person-outline'
     },
     {
         id: 5,
-        title: 'PROMOTIONS',
+        title: 'Promotions',
         ico: 'ios-pricetag-outline'
     },
     {
         id: 6,
-        title: 'SCAN / ADD ITEM',
+        title: 'Scan / Add Items',
         ico: 'ios-qr-scanner-outline'
     },
 ]
@@ -50,7 +50,7 @@ const MenuData2 = [
     },
     {
         id: 8,
-        title: 'My ACCOUNT',
+        title: 'My Account',
         ico: 'ios-person-outline'
     },
     {
@@ -71,6 +71,7 @@ export class SideView extends Component{
 
     static propTypes = {
         onSelectItem: PropTypes.func.isRequired,
+        selected: PropTypes.number.isRequired
     }
 
     static defaultProps = {
@@ -81,7 +82,8 @@ export class SideView extends Component{
         const _this = this
         const {userInfo} = this.props
         return(
-            <View style={styles.container}>
+            <Image source={require('../resources/image/side_back.png')} style={styles.background}>
+            <View style={styles.container}>                
                 <View style={styles.topView}>
                     <Text style={styles.name}>{userInfo.firstName + ' ' + userInfo.lastName}</Text>
                     <Text style={styles.phone}>{'+65 ' + userInfo.phone}</Text>
@@ -96,8 +98,12 @@ export class SideView extends Component{
                                 return(
                                     <TouchableOpacity onPress={() => _this.props.onSelectItem(menu.id)} key={index}>
                                         <View style={styles.menuItem}>
-                                            <View style={{width: 25}}><Icon name={menu.ico} size={25} color={colors.text} /></View>
-                                            <View><Text style={styles.menuText}>{menu.title}</Text></View>
+                                            <View style={{width: 25}}><Icon name={menu.ico} size={25} color={colors.lightwhite} /></View>
+                                            <View>
+                                                <Text style={[styles.menuText, {color: _this.props.selected == menu.id ? colors.darkGold : colors.lightwhite}]}>
+                                                {menu.title}
+                                                </Text>
+                                            </View>
                                         </View>
                                     </TouchableOpacity>
                                 )
@@ -110,8 +116,12 @@ export class SideView extends Component{
                                 return(
                                     <TouchableOpacity onPress={() => _this.props.onSelectItem(menu.id)} key={index}>
                                         <View style={styles.menuItem}>
-                                            <View style={{width: 25}}><Icon name={menu.ico} size={25} color={colors.text} /></View>
-                                            <View><Text style={styles.menuText}>{menu.title}</Text></View>
+                                            <View style={{width: 25}}><Icon name={menu.ico} size={25} color={colors.lightwhite} /></View>
+                                            <View>
+                                                <Text style={[styles.menuText, {color: _this.props.selected == menu.id ? colors.darkGold : colors.lightwhite}]}>
+                                                {menu.title}
+                                                </Text>
+                                            </View>
                                         </View>
                                     </TouchableOpacity>
                                 )
@@ -122,6 +132,7 @@ export class SideView extends Component{
                     :null
                 }                
             </View>
+            </Image>
         );
     };
 }
@@ -130,10 +141,15 @@ export class SideView extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.green,
+        backgroundColor: colors.text,
         marginTop: Platform.OS == 'ios' ? -20 : 0,
         borderColor: colors.gray,
-        borderWidth: 0
+        borderWidth: 0,
+        opacity: 0.95
+    },
+    background: {
+        flex: 1,
+        resizeMode: 'cover'
     },
     topView: {
         marginTop: 80,
@@ -150,10 +166,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     menuText: {
-        color: colors.lightwhite,
-        fontSize: 16,
+        color: 'white',
+        fontSize: 20,
         marginLeft: 20,
-        fontFamily: fonts.syabil,
+        fontFamily: fonts.beilling,
         fontWeight: 'bold'
     },
     photo: {

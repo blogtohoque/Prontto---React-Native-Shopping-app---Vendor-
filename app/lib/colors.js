@@ -3,7 +3,7 @@ export default colors = {
     gray: '#999999',
     blue: '#0088FF',
     darkblue: '#0033FF',
-    green: '#11CC99',
+    green: '#33CC99',
     darkGold: '#C45E02',
     text: '#333333',
     lightGray: '#F2F2F2',
