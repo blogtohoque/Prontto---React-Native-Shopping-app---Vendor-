@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../redux/actions'
+import fonts from '../lib/fonts'
 
 import colors from '../lib/colors'
 
@@ -86,34 +87,40 @@ export class SideView extends Component{
                     <Text style={styles.phone}>{'+65 ' + userInfo.phone}</Text>
                     <Image source={this.state.photo} style={styles.photo} />
                 </View>
-                <View style={styles.middleView}>
                 {
-                    MenuData1.map(function(menu, index){
-                        return(
-                            <TouchableOpacity onPress={() => _this.props.onSelectItem(menu.id)} key={index}>
-                                <View style={styles.menuItem}>
-                                    <View><Icon name={menu.ico} size={30} color={colors.darkGray} /></View>
-                                    <View><Text style={styles.menuText}>{menu.title}</Text></View>
-                                </View>
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-                </View>
-                <View style={styles.bottomView}>
-                {
-                    MenuData2.map(function(menu, index){
-                        return(
-                            <TouchableOpacity onPress={() => _this.props.onSelectItem(menu.id)} key={index}>
-                                <View style={styles.menuItem}>
-                                    <View><Icon name={menu.ico} size={30} color={colors.darkGray} /></View>
-                                    <View><Text style={styles.menuText}>{menu.title}</Text></View>
-                                </View>
-                            </TouchableOpacity>
-                        )
-                    })
-                }
-                </View>
+                    this.props.userInfo.uid !== undefined?
+                    <View style={{flex: 1}}>
+                        <View style={styles.middleView}>
+                        {
+                            MenuData1.map(function(menu, index){
+                                return(
+                                    <TouchableOpacity onPress={() => _this.props.onSelectItem(menu.id)} key={index}>
+                                        <View style={styles.menuItem}>
+                                            <View style={{width: 25}}><Icon name={menu.ico} size={25} color={colors.text} /></View>
+                                            <View><Text style={styles.menuText}>{menu.title}</Text></View>
+                                        </View>
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+                        </View>
+                        <View style={styles.bottomView}>
+                        {
+                            MenuData2.map(function(menu, index){
+                                return(
+                                    <TouchableOpacity onPress={() => _this.props.onSelectItem(menu.id)} key={index}>
+                                        <View style={styles.menuItem}>
+                                            <View style={{width: 25}}><Icon name={menu.ico} size={25} color={colors.text} /></View>
+                                            <View><Text style={styles.menuText}>{menu.title}</Text></View>
+                                        </View>
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+                        </View>
+                    </View>
+                    :null
+                }                
             </View>
         );
     };
@@ -123,10 +130,10 @@ export class SideView extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightwhite,
+        backgroundColor: colors.green,
         marginTop: Platform.OS == 'ios' ? -20 : 0,
         borderColor: colors.gray,
-        borderWidth: 1
+        borderWidth: 0
     },
     topView: {
         marginTop: 80,
@@ -143,9 +150,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     menuText: {
-        color: colors.text,
+        color: colors.lightwhite,
         fontSize: 16,
-        marginLeft: 20
+        marginLeft: 20,
+        fontFamily: fonts.syabil,
+        fontWeight: 'bold'
     },
     photo: {
         position: 'absolute',
@@ -159,12 +168,14 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: colors.text
+        color: colors.lightwhite,
+        fontFamily: fonts.beilling
     },
     phone: {
         marginTop: 10,
         fontSize: 14,
-        color: colors.text
+        color: colors.lightwhite,
+        fontFamily: fonts.beilling
     },
     middleView: {
         flex: 1,
@@ -172,9 +183,11 @@ const styles = StyleSheet.create({
         paddingTop: 60
     },
     bottomView: {
-        height: 120,
-        marginBottom: 40,
+        height: 150,
         paddingLeft: 10,
+        borderTopWidth: 1,
+        borderColor: colors.lightGray,
+        justifyContent: 'center'
     }
 });
 

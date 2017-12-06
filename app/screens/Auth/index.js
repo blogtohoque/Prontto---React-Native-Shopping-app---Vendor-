@@ -10,6 +10,7 @@ import { Container, Content } from 'native-base';
 import Button from 'apsl-react-native-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../../lib/colors'
+import fonts from '../../lib/fonts'
 import Toast, {DURATION} from 'react-native-easy-toast'
 import { NavigationActions } from 'react-navigation'
 export class Auth extends Component{
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.lightwhite
     },
     sendButton: {
-        backgroundColor: colors.blackBlue,        
+        backgroundColor: colors.darkblue,        
         width: 200,
         height: 60,
         borderRadius: 10,
@@ -255,7 +256,8 @@ const styles = StyleSheet.create({
     sendText: {
         fontSize: 20,
         color: colors.lightwhite,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: fonts.syabil
     },
     bottomView: {
         position: 'absolute',
@@ -304,14 +306,16 @@ const styles = StyleSheet.create({
         color: colors.lightwhite,
         fontSize: 20,
         backgroundColor: 'transparent',
-        padding: 10
+        padding: 10,
+        fontFamily: fonts.beilling
     },
     notifyText: {
         color: 'yellow',
         fontSize: 20,
         backgroundColor: 'transparent',
         padding: 50,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: fonts.syabil
     }
 })
 

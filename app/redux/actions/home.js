@@ -27,9 +27,39 @@ export function getImage(uid, callback) {
             let data = '';    
             if (snapshot.val()) {
                 data = snapshot.val().photo;
+                firebase.storage()
+                .ref('profile/' + data)
+                .getDownloadURL()
+                .then((url) => {
+                    firebase.storage().refFromURL(url).getDownloadURL().then((url) => {
+                        callback(url);
+                    })
+                })
             }
-            callback(data)
+            if(data == '') callback(null)
+            else{
+                
+            }
         });
     }
+}
+
+export function saveProfile(param, callback) {
+    return function (dispatch) {
+        let updates = {}
+        const path = 'Vendors/' + param.uid
+        updates[path] = param
+        firebase.database().ref().update(updates).then((res) => {
+            callback('success')
+        })
+        .catch((e) => callback(e.toString()))
+    }    
+}
+
+export function signOut(callback) {
+    return function (dispatch) {
+        firebase.auth().signOut()
+        callback('success')
+    }    
 }
 

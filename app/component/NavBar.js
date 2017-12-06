@@ -4,6 +4,7 @@ import React, {Component, PropTypes} from 'react';
 import {Text, View, Image, StyleSheet, TouchableOpacity, Animated, Dimensions, Platform} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../lib/colors'
+import fonts from '../lib/fonts'
 const Width = Dimensions.get('window').width
 const Height = Dimensions.get('window').height
 
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         position: 'relative',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        paddingTop: Platform.OS == 'ios' ? 20 : 0,
     },
 
     menuButton: {
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 18,
         textAlign: 'center',
+        fontFamily: fonts.beilling
     },
 
     callButton: {

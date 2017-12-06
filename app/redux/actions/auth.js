@@ -24,9 +24,9 @@ export function confirmVerificationCode(number, code, callback) {
                 }
                 else{
                     alert("Can't get data!")
-                }                
-            });
-            callback('success')
+                } 
+            });     
+            callback('success')         
         })
         .catch(error => {
             callback('register')

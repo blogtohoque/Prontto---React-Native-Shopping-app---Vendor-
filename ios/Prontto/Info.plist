@@ -67,12 +67,16 @@
 		<string>Zocial.ttf</string>
 		<string>Feather.ttf</string>
 		<string>MaterialCommunityIcons.ttf</string>
+    <string>Beillingsday.otf</string>
+    <string>Syabil-Book.ttf</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>barcode scanning</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
+	<string>image uploading</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>image uploading</string>
 </dict>
 </plist>

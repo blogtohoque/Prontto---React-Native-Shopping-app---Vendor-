@@ -45,14 +45,15 @@ export class Home extends Component{
             case 4://on Select "Help"
                 break
             case 9://on Select "Help"
-                // const resetAction = NavigationActions.reset({
-                //     index: 0,
-                //     actions: [
-                //         NavigationActions.navigate({ routeName: 'auth', params: {}})
-                //     ]
-                // })
-                // this.props.navigation.dispatch(resetAction)
-                this.onPressAccout()
+                this.props.signOut((res) => {
+                    const resetAction = NavigationActions.reset({
+                        index: 0,
+                        actions: [
+                            NavigationActions.navigate({ routeName: 'auth', params: {}})
+                        ]
+                    })
+                    this.props.navigation.dispatch(resetAction)
+                })                
                 break
             default: 
                 break            

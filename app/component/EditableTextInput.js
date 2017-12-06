@@ -4,6 +4,7 @@ import React, {Component, PropTypes} from 'react';
 import {Text, View, Image, StyleSheet, TouchableOpacity, TextInput, Dimensions, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../lib/colors'
+import fonts from '../lib/fonts'
 const Width = Dimensions.get('window').width
 const Height = Dimensions.get('window').height
 
@@ -48,6 +49,7 @@ export class EditableTextInput extends React.Component{
                         value={this.props.text}
                         onChangeText={(text) => this.onChange(text)}
                         underlineColorAndroid='transparent'
+                        placeholder='None'
                         onSubmitEditing={() => this.setState({editable: false})}
                     />
                 </View>
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         color: colors.text,
         fontSize: 16,
+        fontFamily: fonts.syabil
     }
 })
 

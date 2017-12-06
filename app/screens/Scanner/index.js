@@ -15,7 +15,7 @@ export class Scanner extends Component{
         super(props);
         // 初始状态
         this.state = {
-            
+            step: 'scanning'
         };
     }
 
@@ -23,7 +23,8 @@ export class Scanner extends Component{
         this.setState({type: e.type, data: e.data})
         this.props.searchProduct(e.data, (res) => {
             if(res == {}){
-                
+                this.setState({step: 'scanned_new'})
+
             }
         })
     }
@@ -38,6 +39,18 @@ export class Scanner extends Component{
                     <View style={{flex: 1}}>
                         <Text style={styles.small}>Product ID</Text>
                         <Text style={styles.data}>{this.state.data}</Text>
+                        <Text style={styles.small}>Price</Text>
+                        <TextInput
+                            autoFocus={this.state.editable}
+                            ref={(ref) => this.textInput = ref}
+                            style={[styles.textInput, {color: this.state.editable ? colors.blue : colors.text}]}
+                            editable={this.state.editable}
+                            value={this.props.text}
+                            onChangeText={(text) => this.onChange(text)}
+                            underlineColorAndroid='transparent'
+                            placeholder='None'
+                            onSubmitEditing={() => this.setState({editable: false})}
+                        />
                     </View>
                     :this.state.step == 'scanned_exist'?
                     <ScrollView style={{flex: 1}}>
