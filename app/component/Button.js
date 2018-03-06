@@ -51,11 +51,11 @@ export class MyButton extends React.Component{
 
 const styles = StyleSheet.create({
     container: {        
-        justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
+        width: Width
     },
     button: {
-        flex: 1,
         height: 50,
         borderWidth: 0,
         borderRadius: 10,

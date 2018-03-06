@@ -5,7 +5,15 @@ import * as firebase from "firebase";
 
 export function sendVerificationCode(pNumber, callback) {
     return function (dispatch) {
-        callback('success')   
+        firebase.auth().languageCode='it'
+        var appVerifier = firebase.auth().ApplicationVerifier
+        firebase.auth().signInWithPhoneNumber(pNumber, appVerifier)
+        .then(function(confirmationResult) {
+            callback(confirmationResult)
+        })
+        .catch(function(error){
+            alert(error.toString())
+        })
     }
 }
 

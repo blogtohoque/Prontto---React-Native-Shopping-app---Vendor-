@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../redux/actions'
+import ProfileImage from './ProfileImage'
 import fonts from '../lib/fonts'
 
 import colors from '../lib/colors'
@@ -87,7 +88,17 @@ export class SideView extends Component{
                 <View style={styles.topView}>
                     <Text style={styles.name}>{userInfo.firstName + ' ' + userInfo.lastName}</Text>
                     <Text style={styles.phone}>{'+65 ' + userInfo.phone}</Text>
-                    <Image source={this.state.photo} style={styles.photo} />
+                    <View style={styles.photo}>
+                    {
+                        userInfo.uid !== undefined?
+                        <ProfileImage 
+                            userId={userInfo.uid} 
+                            handle={this.props} 
+                            size={60}
+                        />
+                        :null
+                    }                        
+                    </View>
                 </View>
                 {
                     this.props.userInfo.uid !== undefined?
@@ -141,7 +152,7 @@ export class SideView extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.text,
+        backgroundColor: colors.blue,
         marginTop: Platform.OS == 'ios' ? -20 : 0,
         borderColor: colors.gray,
         borderWidth: 0,
@@ -168,7 +179,7 @@ const styles = StyleSheet.create({
     menuText: {
         color: 'white',
         fontSize: 20,
-        marginLeft: 20,
+        marginLeft: 10,
         fontFamily: fonts.beilling,
         fontWeight: 'bold'
     },
@@ -178,7 +189,6 @@ const styles = StyleSheet.create({
         left: 10,
         width: 60,
         height: 60,
-        resizeMode: 'stretch',
         borderRadius: 30
     },
     name: {

@@ -42,10 +42,8 @@ export class NavBar extends React.Component{
                     {
                         this.props.rightIconName == ''?null
                         :
-                        <TouchableOpacity onPress={() => this.props.onCallClick()} style={styles.callButton}>
-                            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                <Ionicons name={this.props.rightIconName} color='white' size={25} />
-                            </View>
+                        <TouchableOpacity onPress={() => this.props.onRightClick()} style={styles.callButton}>
+                            <Ionicons name={this.props.rightIconName} color='white' size={25} />
                         </TouchableOpacity>
                     }
                     </View>                    
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
         height: Platform.OS == 'ios' ? 80 : 60,
         paddingTop: 20,
         marginTop: Platform.OS == 'ios' ? -20 : 0,
-        backgroundColor: colors.blue
+        backgroundColor: colors.darkGold
     },
 
     container: {

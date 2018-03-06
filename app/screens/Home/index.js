@@ -67,7 +67,7 @@ export class Home extends Component{
     render(){
         const menu = <SideView selected={this.state.sideBarIndex} onSelectItem={(index) => this.onSelectSideBar(index)}/>
         return(
-            <SideMenu menu={menu} isOpen={this.state.isOpen} onChange={isOpen => this.setState({isOpen})} style={styles.container}>
+            <SideMenu openMenuOffset={250} menu={menu} isOpen={this.state.isOpen} onChange={isOpen => this.setState({isOpen})} style={styles.container}>
                 {
                     this.state.sideBarIndex == 1?
                     <StoreSetup 

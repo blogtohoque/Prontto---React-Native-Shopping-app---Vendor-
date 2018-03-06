@@ -6,7 +6,7 @@ import {Text, View, Image, StyleSheet, TouchableOpacity, TextInput, Dimensions} 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../redux/actions'
-
+import DeviceInfo from 'react-native-device-info';
 const { width, height } = Dimensions.get('window');
 
 export class Home extends Component{
@@ -17,6 +17,10 @@ export class Home extends Component{
 
         };
     };
+
+    componentDidMount() {
+
+    }
 
     render(){
         return(

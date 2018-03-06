@@ -21,12 +21,14 @@ export class EditableTextInput extends React.Component{
 
     static propTypes = {
         onChange: PropTypes.func.isRequired,
-        text: PropTypes.string.isRequired
+        text: PropTypes.string.isRequired,
+        keyboardType: PropTypes.string
     }
 
     static defaultProps = {
         onChange: () => undefined,
-        text: ''
+        text: '',
+        keyboardType: 'default'
     }
 
     onChange(text) {
@@ -47,6 +49,7 @@ export class EditableTextInput extends React.Component{
                         style={[styles.textInput, {color: this.state.editable ? colors.blue : colors.text}]}
                         editable={this.state.editable}
                         value={this.props.text}
+                        keyboardType={this.props.keyboardType}
                         onChangeText={(text) => this.onChange(text)}
                         underlineColorAndroid='transparent'
                         placeholder='None'

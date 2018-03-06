@@ -21,13 +21,17 @@ export class Auth extends Component{
             'Setting a timer'
         ];
         this.state = {
-            number: '351265805126',
+            number: '',
             step: 'login',
             loading: false
         };
     };
 
     verify() {
+        if(this.state.number.length < 7){
+            alert('Phone number must be over 7 digits!')
+            return
+        }
         this.setState({loading: true})
         this.props.sendVerificationCode(this.state.number, (res) => {
             this.setState({loading: false})
@@ -53,7 +57,7 @@ export class Auth extends Component{
         })
     }
 
-    onConfirmCode() {
+    onConfirmCode() {        
         this.setState({loading: true})
         this.props.confirmVerificationCode(this.state.number, this.state.code, (res) => {
             this.setState({loading: false})
@@ -245,7 +249,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.lightwhite
     },
     sendButton: {
-        backgroundColor: colors.darkblue,        
+        backgroundColor: colors.darkGold,        
         width: 200,
         height: 60,
         borderRadius: 10,

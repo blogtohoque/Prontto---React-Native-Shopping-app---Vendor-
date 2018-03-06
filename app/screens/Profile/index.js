@@ -177,7 +177,6 @@ export class Profile extends Component{
                                     userId={userInfo.uid} 
                                     handle={this.props} 
                                     size={120}
-                                    onImageChang
                                 />
                             </TouchableOpacity>
                             <Text style={styles.name}>{userInfo.firstName + ' ' + userInfo.lastName}</Text>
@@ -200,11 +199,13 @@ export class Profile extends Component{
                             />
                             <Text style={styles.profileTitle}>Email</Text>
                             <EditableTextInput
+                                keyboardType='email-address'
                                 text={this.state.email}
                                 onChange={(text) => this.setState({email: text})}
                             />
                             <Text style={styles.profileTitle}>Phone Number</Text>
                             <EditableTextInput
+                                keyboardType='numeric'
                                 text={this.state.phone}
                                 onChange={(text) => this.setState({phone: text})}
                             />

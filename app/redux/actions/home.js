@@ -27,7 +27,8 @@ export function getImage(uid, callback) {
             let data = '';    
             if (snapshot.val()) {
                 data = snapshot.val().photo;
-                firebase.storage()
+                if(data == '') callback(null)
+                else firebase.storage()
                 .ref('profile/' + data)
                 .getDownloadURL()
                 .then((url) => {
@@ -44,6 +45,19 @@ export function getImage(uid, callback) {
     }
 }
 
+export function getProductImage(image, callback) {
+    return function (dispatch) {
+        firebase.storage()
+        .ref('product/' + image)
+        .getDownloadURL()
+        .then((url) => {
+            firebase.storage().refFromURL(url).getDownloadURL().then((url) => {
+                callback(url);
+            })
+        })
+    }
+}
+
 export function saveProfile(param, callback) {
     return function (dispatch) {
         let updates = {}
@@ -54,6 +68,13 @@ export function saveProfile(param, callback) {
         })
         .catch((e) => callback(e.toString()))
     }    
+}
+
+export function addProduct(param) {
+    return function (dispatch) {
+        let path = "/Products/" + param.product_id + '/' + param.vendor_id 
+        firebase.database().ref(path).set(param)
+    }
 }
 
 export function signOut(callback) {
